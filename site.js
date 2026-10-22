@@ -1,14 +1,13 @@
 const logo = document.getElementById('animated-logo');
-const button = document.getElementById('motion');
 const preference = matchMedia('(prefers-reduced-motion: reduce)');
-let playing = false;
-function setMotion(value) {
-  playing = value;
-  logo.src = value ? 'assets/logo-animation.gif' : 'assets/logo-still.png';
-  button.textContent = value ? 'Pause animation' : 'Play animation';
-  button.setAttribute('aria-pressed', String(value));
+let timer;
+function showMark() {
+  clearTimeout(timer);
+  logo.src = 'assets/logo-still.png';
+  if (!preference.matches) {
+    logo.src = 'assets/logo-animation.gif';
+    timer = setTimeout(() => { logo.src = 'assets/logo-still.png'; }, 4000);
+  }
 }
-button.hidden = false;
-button.addEventListener('click', () => setMotion(!playing));
-preference.addEventListener('change', event => setMotion(!event.matches));
-setMotion(!preference.matches);
+preference.addEventListener('change', showMark);
+showMark();
