@@ -341,6 +341,21 @@ section.mailing-list{border-top:3px solid var(--line);border-bottom:3px solid va
 .future p{max-width:48em}
 .future .button{display:inline-block;max-width:100%;white-space:normal;background:#070707;color:#FFF8E8;border-color:#070707;box-shadow:none}
 .future .button:hover{background:#FFF8E8;color:#070707}
+
+/* FM-SITE-TYPE-FIX-24 (draft, not live): type fixes from the Lupton review, results/2026-10-24-fm-site-type-review-24.
+   1 headings break evenly · 7 paragraphs avoid one-word last lines (lup-short-line-last, p. 128) */
+h1,h2{text-wrap:balance}
+p,li{text-wrap:pretty}
+/* 2 on phones a heading sits close to its own text (lup-vspace-heading-closer-to-text, p. 139) */
+@media (max-width:900px){.split{row-gap:0}.split h2{margin-bottom:16px}}
+/* 3 one size per role (lup-hier-consistent, pp. 156, 165): content h3 24px, leads one size, every h2 the same */
+.boxes h3,.video h3,.stage-copy h3{font-size:24px;line-height:1.2}
+.about-intro{font-size:clamp(21px,2.1vw,25px)}
+.mailing-list h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1}
+/* 4 one label style: bold capitals tracked 0.1em (lup-hierarchy-similarity-cues, p. 225; lup-caps-track-open, p. 134) */
+.eyebrow,.contact-form label,.tiles .label,.mail-preview label{font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+/* 8 small headings keep normal spacing; the tight -0.03em stays on h1 and h2 (lup-body-tracking-subtle, pp. 128, 136-137) */
+h3{letter-spacing:0}
 </style>
 </head>
 <body>
