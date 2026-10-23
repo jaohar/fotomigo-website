@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Why family stories are worth keeping · Fotomigo</title>
 <meta name="description" content="Why Fotomigo makes family story films: knowing where you come from, how a story is told, and keeping older relatives close.">
-<script>
-// Theme: the system setting by default; the toggle (top right) can pin light or dark for this browser (same key as the home page).
-try { var t = localStorage.getItem('fotomigo-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
+<script src="../theme.js"></script>
 <style>
 /* FM-GUZZLE-SITE-7-23: the home page's styling (memo 071433: "let's make sure this worth keeping website uses the same
    styling as the main site"): its colour tokens, dark mode and theme toggle, Space Grotesk, logo header and boxed labels.
@@ -107,15 +104,7 @@ footer{margin-top:80px;padding:22px 0 30px}
 <footer class="small"><p><b>Fotomigo</b> · Short family films for your children, made by Jonathan.</p></footer>
 </div>
 <script>
-// Theme toggle, as on the home page: system → light → dark → system, kept in this browser only.
-(function(){
-  var b = document.querySelector('.theme'), root = document.documentElement;
-  var next = { system: 'light', light: 'dark', dark: 'system' };
-  var said = { system: 'Colours: follow this device. Press for light.', light: 'Colours: light. Press for dark.', dark: 'Colours: dark. Press to follow this device.' };
-  function show(m){ b.setAttribute('data-mode', m); b.setAttribute('aria-label', said[m]); if (m === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', m); }
-  show(root.getAttribute('data-theme') || 'system');
-  b.addEventListener('click', function(){ var m = next[b.getAttribute('data-mode')]; show(m); try { if (m === 'system') localStorage.removeItem('fotomigo-theme'); else localStorage.setItem('fotomigo-theme', m); } catch (e) {} });
-})();
+// Theme behaviour is shared in theme.js.
 </script>
 </body>
 </html>

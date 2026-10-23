@@ -15,10 +15,7 @@
      question as the heading; curation-led steps; Oxford commas; the logo centred at the top; the animated logo at the foot.
      Revision 8's note: from revision 7, with memo 074436's benefits. Local candidate. Not published. Opens from the file; no server.
      GoatCounter tag copied from jaohar/jaohar.com.au index.html line 24 (commit 5115e98), as in revisions 4 and 6. -->
-<script>
-// Theme: the system setting by default; the toggle (top right) can pin light or dark for this browser.
-try { var t = localStorage.getItem('fotomigo-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
+<script src="theme.js"></script>
 <script data-goatcounter="https://jaohar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
 @font-face{font-family:Space;src:url("fonts/SpaceGrotesk-VF-wght.ttf") format("truetype");font-weight:300 700;font-display:swap}
@@ -338,6 +335,12 @@ section.mailing-list{border-top:3px solid var(--line);border-bottom:3px solid va
 .hero-walk{height:520px;min-height:0}
 .hero-walk .walk-phone{width:min(72%,calc((var(--demo-height,520px) - 112px)*.5));max-height:none}
 @media(max-width:900px){.hero-walk{height:440px}}
+/* Education ambition stays yellow with dark text in either theme. */
+.future{background:#FFD43B;color:#070707;border:4px solid #070707;padding:clamp(24px,4vw,48px);box-shadow:8px 8px 0 var(--line)}
+.future h2{margin-top:0}
+.future p{max-width:48em}
+.future .button{display:inline-block;max-width:100%;white-space:normal;background:#070707;color:#FFF8E8;border-color:#070707;box-shadow:none}
+.future .button:hover{background:#FFF8E8;color:#070707}
 </style>
 </head>
 <body>
@@ -453,6 +456,13 @@ section.mailing-list{border-top:3px solid var(--line);border-bottom:3px solid va
 
 </section>
 
+<section class="block future" aria-labelledby="future-title">
+  <h2 id="future-title">The future of Fotomigo is education.</h2>
+  <p>Our ambition is to make screen time more nourishing, with films that are fun to watch and relevant to your child’s life. That means exploring what suits their stage of development and what they’re ready to learn, drawing on the people, places and everyday experiences they know.</p>
+  <p>We’d love to hear what your child is curious about and what you’d like to help them learn. Let’s talk about how Fotomigo could support that.</p>
+  <a class="button" href="#contact">Talk about your child’s learning</a>
+</section>
+
 <!-- about me -->
 <section class="block section-divider" aria-labelledby="about">
   <h2 id="about">About me.</h2>
@@ -514,15 +524,7 @@ section.mailing-list{border-top:3px solid var(--line);border-bottom:3px solid va
   document.getElementById('promo-title').textContent = L[m[1]];
 })();
 
-// Theme toggle: system → light → dark → system. The choice is kept in this browser only.
-(function(){
-  var b = document.querySelector('.theme'), root = document.documentElement;
-  var next = { system: 'light', light: 'dark', dark: 'system' };
-  var said = { system: 'Colours: follow this device. Press for light.', light: 'Colours: light. Press for dark.', dark: 'Colours: dark. Press to follow this device.' };
-  function show(m){ b.setAttribute('data-mode', m); b.setAttribute('aria-label', said[m]); if (m === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', m); }
-  show(root.getAttribute('data-theme') || 'system');
-  b.addEventListener('click', function(){ var m = next[b.getAttribute('data-mode')]; show(m); try { if (m === 'system') localStorage.removeItem('fotomigo-theme'); else localStorage.setItem('fotomigo-theme', m); } catch (e) {} });
-})();
+// Theme behaviour is shared in theme.js.
 
 // Polaroid films. Each film has its own treatment: a slow push across one picture (Ken Burns), a stack dropped one
 // by one, pictures thrown onto a table, and a strip sliding past. The pictures are drawn scenes, never family photos.
