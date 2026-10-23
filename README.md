@@ -1,7 +1,5 @@
-# Fotomigo temporary website
+# Fotomigo website
 
-A standalone holding page with the existing Fotomigo wordmark and tile animation.
+The Fotomigo website, served by GitHub Pages from the main branch root at https://fotomigo.com.au/.
 
-Serve this directory with any static HTTP server. GitHub Pages serves the main branch root. No build, dependencies, trackers or forms are required. No contact address or buttons are displayed. The logo animates once for four seconds, then holds on its full still. Reduced motion shows the still immediately.
-
-Replace these files with the completed website when ready. Keep the domain and hosting configuration for continuity. Space Grotesk is distributed under the included SIL Open Font License in assets/OFL.txt. Fotomigo brand assets remain the property of their owner.
+Static files only: no build step. Keep `CNAME` and `.nojekyll` for the domain and hosting. Space Grotesk is distributed under the SIL Open Font License in `fonts/OFL.txt`. Fotomigo brand assets remain the property of their owner.

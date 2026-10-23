@@ -1,17 +1,645 @@
 <!doctype html>
 <html lang="en-AU">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fotomigo | Family documentaries</title>
-<meta name="description" content="Your family's photos and videos, made into a documentary to watch together.">
-<link rel="stylesheet" href="style.css"><script src="site.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Fotomigo is a private video channel about your family: short films made from the photos and videos you care about most, for your children. Made by Jonathan.">
+<title>Your family’s stories, made into films | Fotomigo</title>
+<!-- FM-GUZZLE-SITE-ONE-2-23 (23 Oct): memo 130729 edits in place; see results/2026-10-23-fm-guzzle-site-one-2-23/README.md.
+     FM-GUZZLE-SITE-10-23: site revision 9, from revision 8 (FM-GUZZLE-SITE-8-23), with memos 092014, 095313 and 100015 (23 Oct):
+     three lead lines (a on the page; ?lead=b and ?lead=c show the others; lead-lines.html shows all three side by side);
+     the four channel films and the demo play Polaroid films (each with its own treatment) with a playhead, then a
+     five-second countdown, then "What's next?"; video-first About with the award in its own box below and more research;
+     the music line; private screenings of a series of films; the choose-your-own-adventure section dropped; "Promote your
+     language and culture"; "Files to keep"; the family-resources box and a private box (eight benefits); the screen-time
+     question as the heading; curation-led steps; Oxford commas; the logo centred at the top; the animated logo at the foot.
+     Revision 8's note: from revision 7, with memo 074436's benefits. Local candidate. Not published. Opens from the file; no server.
+     GoatCounter tag copied from jaohar/jaohar.com.au index.html line 24 (commit 5115e98), as in revisions 4 and 6. -->
+<script>
+// Theme: the system setting by default; the toggle (top right) can pin light or dark for this browser.
+try { var t = localStorage.getItem('fotomigo-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<script data-goatcounter="https://jaohar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+@font-face{font-family:Space;src:url("fonts/SpaceGrotesk-VF-wght.ttf") format("truetype");font-weight:300 700;font-display:swap}
+:root{color-scheme:light;--paper:#FFF8E8;--ink:#070707;--card:#fffdf6;--muted:#4a4540;--line:#070707;
+  --red:#FF4B32;--yellow:#FFD43B;--blue:#56B8FF;--green:#68d391;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--paper:#212121;--ink:#FFF8E8;--card:#2a2a2a;--muted:#cfc9bf;--line:#FFF8E8}}
+:root[data-theme=dark]{color-scheme:dark;--paper:#212121;--ink:#FFF8E8;--card:#2a2a2a;--muted:#cfc9bf;--line:#FFF8E8}
+*{box-sizing:border-box;border-radius:0}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:20px/1.55 Space,"Helvetica Neue",Arial,sans-serif;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 28px}
+h1,h2,h3{font-weight:700;letter-spacing:-.03em;overflow-wrap:break-word}
+a{color:inherit;text-underline-offset:4px}
+a:focus-visible,button:focus-visible,.button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #126abd;outline-offset:4px}
+/* the top: the mark sits in the centre of the page; the words on the left and the toggle on the right take equal columns */
+header.top{display:grid;grid-template-columns:minmax(0,1fr) 360px minmax(0,1fr);align-items:center;gap:16px}
+.logo{display:block;width:100%;height:auto;grid-column:2;grid-row:1} /* brand rule 2: the mark is placed from the brand files, not drawn */
+.top-left{grid-column:1;grid-row:1}
+.top-right{grid-column:3;grid-row:1;justify-self:end}
+.small{font-size:16px;line-height:1.5}
+header .small{font-weight:600}
+/* theme toggle: system (half and half), light (white), dark (black) */
+.theme{flex:none;width:48px;height:48px;padding:0;display:grid;place-items:center;border:3px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.theme svg{display:block;width:26px;height:26px}
+.theme .i{display:none}
+.theme[data-mode=system] .i-system,.theme[data-mode=light] .i-light,.theme[data-mode=dark] .i-dark{display:block}
+/* Boxed text sits centred: the box trims its first line to the capitals and its last line to the baseline
+   (text-box), so equal padding gives equal space above and below the letters. Last children carry no margin.
+   A label that opens a box is display:table, so it is not trimmed and its own border is the top of the content. */
+.boxed{text-box:trim-both cap alphabetic}
+.boxed > :last-child,.boxed > :last-child > :last-child{margin-bottom:0}
+.boxed > :first-child{margin-top:0}
+.eyebrow{display:inline-block;font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--red);color:#070707;border:3px solid var(--line);padding:4px 12px;box-shadow:4px 4px 0 var(--line)}
+/* the opening: one outer box, no centre line, room around the channel */
+.promo{margin-top:24px;border:4px solid var(--line);box-shadow:8px 8px 0 var(--line);background:var(--card);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 40px;padding:36px 40px 0}
+.promo-copy{padding:0 0 32px}
+.promo h1{font-size:clamp(40px,4.6vw,62px);line-height:1.02;margin:22px 0 20px}
+.promo p{margin:0 0 16px;max-width:36em}
+.promo .lead{font-size:clamp(21px,2.1vw,25px);line-height:1.45}
+/* the channel: four example films drawn in the page (Polaroids, no photos); press one and it plays over the channel */
+.channel{padding:6px 0 32px;min-width:0;margin:0}
+.channel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.channel-head b{font-size:22px;letter-spacing:-.02em}
+.channel-head span{font-size:16px;color:var(--muted)}
+.ch-body{position:relative}
+.vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
+.vids li{border:3px solid var(--line);background:var(--card);min-width:0}
+.thumb{position:relative;display:block;width:100%;aspect-ratio:16/10;padding:0;margin:0;border:0;border-bottom:3px solid var(--line);color:#070707;overflow:hidden;cursor:pointer;font:inherit}
+.thumb .pbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:46px;height:46px;display:grid;place-items:center;background:#fffdf6;border:3px solid #070707;transition:transform .3s}
+.thumb .play{width:0;height:0;border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #070707;margin-left:4px}
+.thumb .len{position:absolute;right:8px;bottom:8px;z-index:2;font-size:16px;font-weight:700;background:#fffdf6;border:2px solid #070707;padding:0 6px;line-height:1.4}
+.thumb:hover .pbtn,.thumb:focus-visible .pbtn{transform:translate(-50%,-50%) scale(1.12)}
+.c-red{background:var(--red)}.c-blue{background:var(--blue)}.c-green{background:var(--green)}.c-yellow{background:var(--yellow)}
+.vids h3{font-size:17px;line-height:1.3;margin:0;padding:8px 10px 9px;letter-spacing:-.01em}
+/* a Polaroid: the Fotomigo Test icon's frame, with a drawn scene (sun, hills, a house, the sea, a tree) in place of a photo */
+.pol{position:absolute;left:var(--x);top:var(--y);width:var(--w);background:#FFF8E8;border:2px solid #070707;padding:6% 6% 20%;box-shadow:3px 3px 0 #070707;transform:translate(-50%,-50%) rotate(var(--r));transition:transform .35s}
+.pol svg{display:block;width:100%;height:auto}
+.thumb:hover .pol,.thumb:focus-visible .pol{transform:translate(-50%,-54%) rotate(calc(var(--r) * -1))}
+.next{margin-top:18px;padding:12px 0}
+.next p{margin:0 0 10px;font-size:17px;font-weight:700;line-height:1.3}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{display:inline-block;font-size:16px;font-weight:700;line-height:1.3;border:2px solid #070707;padding:6px 10px;color:#070707}
+.opts .opt:nth-child(1){background:var(--yellow)}.opts .opt:nth-child(2){background:var(--blue)}.opts .opt:nth-child(3){background:var(--green)}
+.channel .note{font-size:16px;line-height:1.45;color:var(--muted);margin:14px 0 0}
+/* the player, shared by the channel and the demo: a film, its playhead, a countdown, then the choice */
+.pl{position:absolute;inset:0;display:none;background:#FFF8E8;color:#070707;overflow:hidden;z-index:5}
+.ch-body .pl{border:3px solid var(--line);box-shadow:6px 6px 0 var(--line)}
+[data-step=play] > .pl,[data-step=count] > .pl,[data-step=choice] > .pl{display:block}
+.pl-film{position:absolute;inset:0 0 58px 0;overflow:hidden;background:var(--blue)}
+.pl-film .pol{border-width:3px;padding:5% 5% 18%}
+.pl-title{position:absolute;left:12px;top:12px;z-index:3;margin:0;font-size:18px;font-weight:700;line-height:1.3;background:#fffdf6;border:2px solid #070707;padding:4px 10px}
+.pl-bar{position:absolute;left:0;right:0;bottom:0;height:58px;display:flex;align-items:center;gap:12px;padding:0 14px;background:#070707;color:#FFF8E8;z-index:3}
+.pl-track{flex:1;height:12px;margin:0 10px;background:#4a4540;position:relative}
+.pl-track i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--yellow)}
+.pl-track b{position:absolute;top:50%;width:20px;height:20px;margin-left:-10px;background:var(--yellow);border:2px solid #FFF8E8;transform:translateY(-50%)}
+.pl-time{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pl-count,.pl-choice{position:absolute;inset:0 0 58px 0;display:none;flex-direction:column;justify-content:center;align-items:center;gap:14px;padding:16px;text-align:center;background:#FFF8E8;z-index:4}
+[data-step=count] .pl-count,[data-step=choice] .pl-choice{display:flex}
+.pl-count p{margin:0;font-size:20px;font-weight:700}
+.pl-n{display:block;font-size:84px;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
+.pl-ticks{display:flex;gap:8px}
+.pl-ticks i{display:block;width:22px;height:22px;border:3px solid #070707;background:#fffdf6}
+.pl-ticks i.on{background:#070707}
+.pl-choice h3{margin:0;font-size:28px;line-height:1.1}
+.pl-choice p{margin:0;font-size:16px;font-weight:600}
+.pl-choice .opts{justify-content:center}
+.pl-choice .opt{font:700 17px/1.3 Space,"Helvetica Neue",Arial,sans-serif;padding:8px 12px;cursor:pointer;border-width:3px}
+.pl-back{position:absolute;right:12px;top:12px;z-index:6;font:700 16px/1.3 Space,"Helvetica Neue",Arial,sans-serif;background:#fffdf6;color:#070707;border:2px solid #070707;padding:4px 10px;cursor:pointer}
+.band{grid-column:1/-1;margin:0 -40px;border-top:4px solid var(--line);background:var(--yellow);color:#070707;padding:16px 40px}
+.band p{margin:0;max-width:none}.band b{font-weight:700}
+.button{display:inline-block;padding:14px 22px;border:3px solid var(--line);background:var(--yellow);color:#070707;font-size:20px;font-weight:700;text-decoration:none;box-shadow:5px 5px 0 var(--line);margin:8px 0 0}
+.button:hover{background:#ffe77c}
+.button:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--line)}
+/* sections are separated by space, not rules */
+section.block{margin-top:96px}
+h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1;margin:0 0 22px;max-width:22em}
+section.block > p{max-width:40em;margin:0 0 18px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.split p{margin:0 0 16px}
+.readmore{display:inline-block;margin-top:4px;font-weight:700;font-size:20px}
+/* benefits: eight boxes, two columns, with room around each box */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin-top:28px;padding:0;list-style:none;align-items:stretch}
+.tiles li{border:3px solid var(--line);box-shadow:5px 5px 0 var(--line);background:var(--card);padding:26px 26px;min-width:0}
+.tiles .label{display:table;font-weight:700;font-size:16px;line-height:1.3;color:#070707;padding:3px 8px;border:2px solid #070707;margin-bottom:14px}
+.tiles li:nth-child(1) .label{background:var(--red)}.tiles li:nth-child(2) .label{background:var(--yellow)}.tiles li:nth-child(3) .label{background:var(--blue)}.tiles li:nth-child(4) .label{background:var(--green)}.tiles li:nth-child(5) .label{background:var(--yellow)}.tiles li:nth-child(6) .label{background:var(--red)}.tiles li:nth-child(7) .label{background:var(--green)}.tiles li:nth-child(8) .label{background:var(--blue)}
+.tiles h3{font-size:24px;line-height:1.2;margin:0 0 10px}
+.tiles p{font-size:20px;line-height:1.5;margin:0;max-width:30em}
+/* the demo: a horizontal channel drawn in the page; a film plays, counts down, then waits for a choice */
+.demo{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:40px;align-items:start}
+.screen{position:relative;aspect-ratio:16/9;border:4px solid var(--line);box-shadow:6px 6px 0 var(--line);background:#FFF8E8;color:#070707;overflow:hidden;container-type:inline-size}
+.s-grid{position:absolute;inset:0;padding:3.2cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi}
+.s-head{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:max(16px,2.6cqi);line-height:1.2}
+.s-head span{font-size:max(16px,2cqi);font-weight:600}
+.s-tiles{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:2cqi;list-style:none;margin:0;padding:0}
+.s-tiles li{border:3px solid #070707;display:flex;min-height:0;transition:transform .3s,box-shadow .3s}
+.s-tiles button{flex:1;display:flex;align-items:flex-end;padding:1.2cqi;border:0;background:none;cursor:pointer;font:inherit;color:#070707;text-align:left}
+.s-tiles li b{font-size:max(16px,2cqi);line-height:1.2;background:#fffdf6;border:2px solid #070707;padding:2px 6px}
+.s-tiles li.on,.s-tiles li:hover,.s-tiles li:focus-within{transform:translate(-3px,-3px);box-shadow:6px 6px 0 #070707}
+.screen .pl-title{font-size:max(16px,2.2cqi)}
+.s-veil{position:absolute;inset:0;display:grid;place-items:center;background:rgba(255,248,232,.82);z-index:7}
+.s-start{font:700 20px/1.3 Space,"Helvetica Neue",Arial,sans-serif;padding:14px 22px;border:3px solid #070707;background:var(--yellow);color:#070707;box-shadow:5px 5px 0 #070707;cursor:pointer}
+.screen.started .s-veil{display:none}
+.demo .note{font-size:17px;line-height:1.5;color:var(--muted);margin:16px 0 0}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;font-size:20px;line-height:1.45}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border:3px solid var(--line);font-weight:700;background:var(--card)}
+.steps li:nth-child(1)::before{background:var(--red);color:#070707}.steps li:nth-child(2)::before{background:var(--yellow);color:#070707}.steps li:nth-child(3)::before{background:var(--blue);color:#070707}.steps li:nth-child(4)::before{background:var(--green);color:#070707}
+.promise{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:24px;align-items:stretch}
+.promise div{border:3px solid var(--line);padding:26px 26px;background:var(--card)}
+.promise h3{margin:0 0 10px;font-size:24px;line-height:1.2}
+.promise p{margin:0;font-size:20px}
+/* about me: his photo beside the intro and the video box; the award in its own box below; then three boxes */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:40px;align-items:start}
+.portrait{margin:0;border:4px solid var(--line);box-shadow:8px 8px 0 var(--line)}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.about-intro{font-size:clamp(21px,2vw,24px);line-height:1.45;margin:0 0 26px;max-width:34em}
+.boxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;margin:40px 0 0;padding:0;align-items:stretch}
+.boxes li{border:3px solid var(--line);background:var(--card);padding:22px 22px;min-width:0}
+.boxes h3{margin:0 0 10px;font-size:22px;line-height:1.2}
+.boxes p{margin:0 0 10px;font-size:20px;line-height:1.5}
+.video{border:4px solid var(--line);background:var(--yellow);color:#070707;padding:26px 28px;box-shadow:8px 8px 0 var(--line)}
+.video .eyebrow{display:table;background:#fffdf6;box-shadow:none;border-color:#070707;margin-bottom:16px}
+.video h3{font-size:clamp(24px,2.6vw,32px);line-height:1.15;margin:0 0 12px}
+.video p{margin:0 0 12px;font-size:20px;line-height:1.5}
+.award{margin-top:28px;border:4px solid var(--line);background:var(--card);padding:22px 26px;box-shadow:6px 6px 0 var(--line)}
+.award .eyebrow{display:table;box-shadow:none;margin-bottom:14px}
+.award h3{font-size:24px;line-height:1.2;margin:0 0 10px}
+.award p{margin:0;font-size:20px;line-height:1.5}
+.boxes li:nth-child(1){border-top:12px solid var(--red)}.boxes li:nth-child(2){border-top:12px solid var(--blue)}.boxes li:nth-child(3){border-top:12px solid var(--green)}
+/* contact form: markup and behaviour copied from jaohar.com.au (index.html 170-180, script.js 99-130), as in revision 4 */
+.families{border:4px solid var(--line);background:var(--yellow);color:#070707;padding:22px 24px;box-shadow:6px 6px 0 var(--line);margin-bottom:22px}
+.families h2{margin:0 0 12px}
+.families p{margin:0 0 10px}
+.contact-form{border:4px solid var(--line);background:var(--card);padding:24px;box-shadow:8px 8px 0 var(--line);display:flex;flex-direction:column}
+.contact-form > div{margin-bottom:18px}
+.contact-form label{display:block;margin-bottom:6px;font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.contact-form input,.contact-form textarea{width:100%;border:3px solid var(--line);padding:12px;background:var(--paper);color:var(--ink);font:19px/1.4 Space,"Helvetica Neue",Arial,sans-serif}
+.contact-form textarea{min-height:170px;resize:vertical}
+.contact-form button{align-self:flex-start;padding:14px 22px;border:3px solid var(--line);background:var(--yellow);color:#070707;box-shadow:5px 5px 0 var(--line);font:700 20px/1.55 Space,"Helvetica Neue",Arial,sans-serif;cursor:pointer}
+.contact-form button:disabled{cursor:wait;opacity:.72}
+.botcheck{display:none}
+.form-privacy{margin:0 0 18px;font-size:16px;line-height:1.5;color:var(--muted)}
+.form-status{margin:18px 0 0;padding-top:14px;border-top:3px solid var(--line);font-weight:700}
+/* the foot: the animated mark from the brand library, centred on the brand's dark stage (#212121), which the mark is drawn on */
+footer{margin-top:96px;padding:28px 20px 30px;text-align:center;background:#212121;color:#FFF8E8;border:4px solid var(--line)}
+footer picture{display:block;margin:0 auto 14px;width:min(360px,90%)}
+footer img{display:block;width:100%;height:auto}
+footer p{margin:0 0 8px}
+@media (max-width:900px){
+  .promo{grid-template-columns:minmax(0,1fr);gap:0}
+  .split,.demo,.about,.promise{grid-template-columns:minmax(0,1fr)}
+  .portrait{max-width:360px}
+}
+@media (max-width:1000px){.boxes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){
+  .tiles,.boxes{grid-template-columns:minmax(0,1fr)}
+  /* the mark keeps the centre on its own row; the words and the toggle share the row below */
+  header.top{grid-template-columns:minmax(0,1fr) auto;row-gap:14px}
+  .logo{grid-column:1/-1;grid-row:1;justify-self:center;width:min(360px,100%)}
+  .top-left{grid-column:1;grid-row:2}
+  .top-right{grid-column:2;grid-row:2}
+}
+@media (max-width:600px){
+  .wrap{padding:16px 16px}
+  .logo{width:min(300px,100%)}
+  header .small{font-size:16px}
+  .promo{box-shadow:5px 5px 0 var(--line);padding:22px 18px 0}
+  .promo-copy{padding:0 0 22px}
+  .channel{padding:0 0 22px}
+  .vids{gap:12px}
+  .band{margin:0 -18px;padding:14px 18px}
+  .promo h1{font-size:40px}
+  section.block{margin-top:64px}
+  .tiles,.promise,.boxes{gap:22px}
+  .tiles li,.promise div{padding:20px 18px}
+  .button{font-size:19px;padding:12px 16px}
+  .contact-form{padding:18px;box-shadow:5px 5px 0 var(--line)}
+  .families,.video,.award{padding:18px;box-shadow:5px 5px 0 var(--line)}
+  .s-tiles{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
+  .s-tiles li:nth-child(n+5){display:none}
+  .pl-n{font-size:56px}
+  .pl-count,.pl-choice{gap:8px}
+  .pl-choice h3{font-size:22px}
+  .screen .pl-count p{font-size:16px}
+  .screen .pl-ticks i{width:16px;height:16px}
+  .screen .pl-n{font-size:40px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}.s-tiles li,.pol,.thumb .pbtn{transition:none}}
+
+/* Revision 10: four illustrated stages and a complete tile-by-tile logo loop. */
+.process-stages{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:48px}
+.process-stage{display:grid;grid-template-columns:44px minmax(0,.85fr) minmax(0,1.3fr);gap:24px;align-items:start;min-width:0}
+.stage-number{display:grid;place-items:center;width:44px;height:44px;border:3px solid var(--line);background:var(--yellow);color:#070707;font-weight:700;font-size:24px}
+.process-stage:nth-child(1) .stage-number{background:var(--red)}.process-stage:nth-child(3) .stage-number{background:var(--blue)}.process-stage:nth-child(4) .stage-number{background:var(--green)}
+.stage-copy h3{font-size:26px;line-height:1.2;margin:0 0 16px}.stage-copy p{font-size:20px;line-height:1.5;margin:0}
+.stage-visual{min-width:0}.stage-picture{aspect-ratio:16/9;border:4px solid var(--line);box-shadow:6px 6px 0 var(--line);padding:20px;background:var(--card);color:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:12px;overflow:hidden}
+.sample-grid,.filmstrip{display:flex;justify-content:center;gap:12px;min-height:0}
+.sample-photo{display:block;background:#FFF8E8;padding:6px 6px 16px;border:2px solid #070707;width:26%;max-width:140px;min-width:0;box-shadow:3px 3px 0 #070707}
+.sample-photo svg{display:block;width:100%;height:auto}.sample-grid .sample-photo:nth-child(2){border:4px solid #FF4B32;transform:rotate(4deg)}
+.visual-note{font-size:20px;line-height:1.25;margin:0;text-align:center}.choose-picture .visual-note:first-of-type{font-weight:700}
+.context-picture{flex-direction:row;align-items:center;gap:24px;background:var(--yellow);color:#070707}
+.context-picture>.sample-photo{width:35%;transform:rotate(-5deg)}.context-notes{display:grid;gap:10px}.context-notes span{padding:8px 12px;border:2px solid #070707;background:#FFF8E8;font-size:20px}
+.soundtrack{display:flex;align-items:center;justify-content:space-around;height:36px;background:#56B8FF;border:2px solid #070707;padding:4px 10px;flex-shrink:0}.soundtrack i{display:block;background:#070707;width:3%;height:var(--h)}
+/* Jonathan, 23 October: one card, two tags and two paragraphs. */
+.credits{border:4px solid var(--line);box-shadow:8px 8px 0 var(--line);background:var(--card);padding:28px;min-width:0}
+.credit-tags{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.credit-tags .eyebrow{margin:0;box-shadow:none;background:var(--yellow);color:#070707;border-color:#070707}
+.credit-tags .eyebrow:last-child{background:var(--blue)}
+.credits p{margin:0;font-size:20px;line-height:1.5}.credits p+p{margin-top:22px}
+/* memo 130729: the promise is back to two boxes (you choose; no AI manipulation) */
+.promise-title{font-size:30px;line-height:1.15;margin:64px 0 0}
+/* stage 1: the curation tool, press the picture you love more */
+.pick-picture{align-items:center;gap:10px}.pick-q{font-weight:700}.pick-pair{display:flex;justify-content:center;gap:24px;width:100%;margin-bottom:8px}
+.pick{position:relative;width:32%;max-width:170px;padding:0;border:0;background:none;cursor:pointer;font:inherit;color:#070707}
+.pick .sample-photo{width:100%;max-width:none;transition:transform .25s}.pick:hover .sample-photo,.pick:focus-visible .sample-photo{transform:rotate(-3deg) scale(1.04)}
+.pick-heart{position:absolute;right:-10px;bottom:-8px;display:grid;place-items:center;width:40px;height:40px;background:#fffdf6;border:3px solid #070707;font-size:22px;line-height:1;color:#FF4B32}
+.pick.chosen .sample-photo{outline:4px solid #FF4B32;outline-offset:2px}.pick.chosen .pick-heart{background:#FF4B32;color:#fffdf6}
+/* stage 3: the looping film; one 12-second cycle, every layer keyed to it */
+.reel{position:relative;aspect-ratio:16/9;border:4px solid var(--line);box-shadow:6px 6px 0 var(--line);background:#070707;overflow:hidden;container-type:inline-size}
+.reel>div{position:absolute;inset:0}.reel-pic{display:block;background:#FFF8E8;border:2px solid #070707;padding:3% 3% 11%;box-shadow:4px 4px 0 #070707}.reel-pic svg,.reel-kb svg{display:block;width:100%;height:auto}
+.reel-mosaic{background:#070707 no-repeat 0 50%/175% auto;animation:reel-mosaic 12s linear infinite both} /* the photo wall is one background image, panned inside the frame */
+.reel-big{display:grid;place-items:center;z-index:2;animation:reel-big 12s cubic-bezier(.2,.8,.3,1) infinite both}
+.reel-big .reel-pic{width:52%;transform:rotate(-3deg)}.reel-year{position:absolute;left:50%;bottom:8%;transform:translateX(-50%) rotate(-3deg);font-size:10cqi;line-height:1;letter-spacing:-.03em;color:#070707;background:#FFD43B;border:3px solid #070707;padding:.6cqi 2cqi}
+.reel-three{z-index:3}.reel-three .reel-pic{position:absolute;top:50%;width:36%;animation:reel-land 12s cubic-bezier(.2,.9,.3,1.15) infinite both}
+.reel-three .reel-pic:nth-child(1){left:6%;--r:-8deg}.reel-three .reel-pic:nth-child(2){left:32%;--r:5deg;animation-delay:.6s}.reel-three .reel-pic:nth-child(3){left:58%;--r:-3deg;animation-delay:1.2s}
+.reel-kb{z-index:4;overflow:hidden;animation:reel-kb 12s ease-in-out infinite both}.reel-kb svg{width:100%;height:100%}
+.reel-swipe{z-index:5;background:#FFD43B;clip-path:polygon(0 0,0 0,-15% 100%,-15% 100%);animation:reel-swipe 12s cubic-bezier(.6,0,.3,1) infinite both} /* a slanted wipe, clipped inside the frame */
+@keyframes reel-mosaic{0%{background-position:0 50%;opacity:1}24%{background-position:50% 50%;opacity:1}27%,95%{background-position:55% 50%;opacity:0}96%{background-position:0 50%;opacity:0}100%{background-position:0 50%;opacity:1}}
+@keyframes reel-big{0%,21%{opacity:0;transform:scale(1.5)}24%{opacity:1;transform:scale(1)}38%{opacity:1;transform:scale(1.04)}40%,100%{opacity:0;transform:scale(1.04)}}
+@keyframes reel-land{0%,38%{opacity:0;transform:translateY(-160%) rotate(calc(var(--r) + 24deg)) scale(1.2)}42%{opacity:1;transform:translateY(-50%) rotate(var(--r)) scale(1)}66%{opacity:1;transform:translateY(-50%) rotate(var(--r)) scale(1)}67%,100%{opacity:0;transform:translateY(-50%) rotate(var(--r))}}
+@keyframes reel-swipe{0%,58%{clip-path:polygon(0 0,0 0,-15% 100%,-15% 100%)}64%,66%{clip-path:polygon(0 0,115% 0,100% 100%,-15% 100%)}72%,100%{clip-path:polygon(115% 0,115% 0,100% 100%,100% 100%)}}
+@keyframes reel-kb{0%,64%{opacity:0;transform:scale(1)}66%{opacity:0;transform:scale(1)}70%{opacity:1;transform:scale(1.02)}93%{opacity:1;transform:scale(1.28) translate(-5%,-3%)}96%,100%{opacity:0;transform:scale(1.3) translate(-5%,-3%)}}
+@media(prefers-reduced-motion:reduce){.reel *,.reel>div{animation:none!important}.reel-mosaic,.reel-three,.reel-kb,.reel-swipe{display:none}.reel-big{opacity:1}}
+.mailing-list{display:grid;grid-template-columns:1fr 1fr;gap:40px;border-top:3px solid var(--line);padding-top:32px}.mailing-list h2{margin:0 0 16px}.mail-preview{display:flex;flex-wrap:wrap;gap:12px}.mail-preview label{display:block;width:100%;font-size:20px}.mail-preview input{width:100%;min-width:0;padding:12px;font:20px Space,sans-serif;border:3px solid var(--line);background:var(--card);color:var(--ink)}.mail-preview button{padding:12px 18px;font:700 20px Space,sans-serif;border:3px solid var(--line);background:var(--yellow);color:#070707;cursor:pointer}.mail-preview p{font-size:16px;line-height:1.5;margin:0}
+.footer-mark{position:relative;width:min(360px,90%);aspect-ratio:720/320;margin:0 auto 14px}.footer-mark img{position:absolute;inset:0;width:100%;height:100%}.logo-still{opacity:0}.logo-tile{animation:tile-pop 5.6s cubic-bezier(.2,.8,.3,1) infinite both}
+@keyframes tile-pop{0%{opacity:0;transform:scale(.65)}8%,65%{opacity:1;transform:scale(1)}73%,100%{opacity:0;transform:scale(.65)}}
+@media(prefers-reduced-motion:reduce){.logo-tile{display:none;animation:none}.logo-still{opacity:1}}
+@media(max-width:900px){.process-stage{grid-template-columns:44px minmax(0,1fr);gap:18px}.stage-visual{grid-column:1/-1}.mailing-list{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.credits{padding:22px 20px;box-shadow:5px 5px 0 var(--line)}.pick-pair{gap:18px}.pick-heart{width:32px;height:32px;font-size:18px;right:-8px;bottom:-6px}.promise-title{margin-top:48px}.stage-picture{padding:12px;gap:8px}.visual-note{font-size:16px}.sample-photo{padding:4px 4px 10px}.context-notes{gap:6px}.context-notes span{font-size:16px;padding:6px 8px}.context-picture{gap:18px}.soundtrack{height:24px}.stage-copy h3{font-size:24px}}
+
+/* Section rhythm: a coloured mailing-list interval, framed by horizontal rules. */
+section.block{margin-top:120px}
+section.section-divider{border-top:3px solid var(--line);padding-top:72px}
+section.mailing-list{border-top:3px solid var(--line);border-bottom:3px solid var(--line);padding:48px 36px;background:var(--blue);color:#070707;gap:48px}
+.mailing-list h2{font-size:clamp(36px,4vw,52px);line-height:1.12}
+.mailing-list input{background:#FFF8E8;color:#070707;border-color:#070707}
+.mailing-list button{border-color:#070707}
+@media(max-width:600px){section.block{margin-top:88px}section.section-divider{padding-top:48px}section.mailing-list{padding:36px 22px;gap:28px}}
+.stage-copy p+p{margin-top:18px}
+
+/* Channel and choice demonstrations: illustrative automatic selections, manual choices on interaction. */
+.walk{min-width:0}.hero-walk{height:470px;position:relative;background:var(--card);overflow:hidden;border:3px solid var(--line)}
+.walk-grid{height:420px;overflow:hidden;padding:16px}.walk-grid .vids{transition:transform 1s ease}.walk-grid .thumb{aspect-ratio:16/10}
+.walk-phone{width:min(250px,82%);height:410px;margin:8px auto 0;border:4px solid var(--line);animation:walkFade .7s ease}
+.walk-player{height:100%;position:relative;overflow:hidden;background:var(--blue);color:#070707;touch-action:pan-x}
+.walk-art{position:absolute;inset:0;overflow:hidden;transition:transform .6s ease,opacity .6s}
+.walk-art .pol{width:68%!important}.walk-title{position:absolute;top:16px;left:12px;right:12px;background:#FFF8E8;border:2px solid #070707;padding:8px;font-size:20px;line-height:1.25}
+.walk-progress{position:absolute;bottom:12px;left:12px;right:12px;height:8px;background:#FFF8E8}.walk-progress i{display:block;height:100%;width:75%;background:#070707;transition:width 1s linear}
+.walk-choices{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:18px;background:var(--paper);color:var(--ink)}
+.walk-choices[hidden],.walk-phone[hidden],.walk-grid[hidden]{display:none}
+.walk-choices p{margin:0;text-align:center;font-weight:700;font-size:24px}.walk-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.walk-options button{font:700 18px/1.3 Space,sans-serif;padding:16px 10px;border:3px solid #070707;color:#070707;background:var(--yellow);min-height:90px}
+.walk-options button+button{background:var(--blue)}.walk-options button.selected{outline:5px solid var(--red);outline-offset:-9px;transform:scale(.94)}
+.walk-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.3}
+.hero-walk .walk-controls{position:absolute;bottom:0;left:0;right:0}.walk-toggle{font:700 16px Space,sans-serif;background:transparent;color:inherit;border:2px solid var(--line);padding:5px 8px;cursor:pointer}
+.step-walk{border:3px solid var(--line);background:var(--card)}.step-walk .walk-player{height:300px}.step-walk .walk-art .pol{width:40%!important}
+.walk-hand{display:none;position:absolute;bottom:28px;right:22px;font-size:48px;font-weight:700;background:#FFF8E8;border:2px solid #070707;padding:0 10px}
+[data-phase=swipe] .walk-hand{display:block;animation:walkSwipe .9s ease both}[data-phase=swipe] .walk-art{transform:translateY(-24%);opacity:.35}
+[data-phase=play] .walk-art{animation:walkPan 3s linear both}
+@keyframes walkFade{from{opacity:0}to{opacity:1}}@keyframes walkSwipe{from{transform:translateY(28px)}to{transform:translateY(-38px)}}@keyframes walkPan{from{transform:scale(1)}to{transform:scale(1.08)}}
+@media(max-width:600px){.hero-walk{height:430px}.walk-grid{height:380px;padding:12px}.walk-phone{height:370px;width:220px}.step-walk .walk-player{height:260px}.walk-options button{font-size:16px;padding:12px 6px}}
+@media(prefers-reduced-motion:reduce){.walk *{animation:none!important;transition:none!important}}
+.walk-art,.walk-hand{animation-play-state:var(--walk-play,running)!important}
+
+/* Viewport-height channel, with a framed phone and a simple mechanical grip. */
+.hero-walk{height:100vh;height:100svh;min-height:420px}
+.hero-walk .walk-grid{height:calc(100% - 58px);padding:18px}
+.hero-walk .walk-phone{position:absolute;top:24px;left:50%;transform:translateX(-50%);margin:0;width:min(72%,calc((100svh - 150px)*.5));height:auto;aspect-ratio:1/2;max-height:calc(100% - 112px);padding:24px 8px 22px;background:#070707;border:3px solid var(--line);overflow:visible}
+.phone-speaker{position:absolute;top:8px;left:38%;width:24%;height:5px;background:#FFF8E8}
+.walk-phone:after{content:"";position:absolute;bottom:8px;left:38%;width:24%;height:4px;background:#FFF8E8}
+.robot-grip{position:absolute;inset:0;pointer-events:none;z-index:5}
+.robot-grip i{position:absolute;right:-22px;top:58%;width:38px;height:28px;border:3px solid #070707;background:var(--yellow);box-shadow:inset -9px 0 0 var(--blue)}
+.robot-grip i:nth-child(2){top:calc(58% + 32px)}.robot-grip i:nth-child(3){top:calc(58% + 64px)}
+.robot-grip b{position:absolute;left:-20px;bottom:12%;width:34px;height:72px;border:3px solid #070707;background:var(--yellow);transform:rotate(-18deg)}
+.robot-grip:after{content:"";position:absolute;bottom:-30px;left:38%;width:42%;height:30px;background:var(--blue);border:3px solid #070707}
+.walk-controls{justify-content:flex-end}
+.walk-progress{height:6px;bottom:10px;left:12px;right:12px;overflow:hidden;background:#FFF8E8;z-index:1}
+.walk-progress i{width:100%;height:100%;transform:scaleX(1);transform-origin:left center;transition:none;background:#070707}
+.walk[data-phase=play] .walk-progress i{animation:walkProgress 3s linear both;animation-play-state:var(--walk-play,running)}
+.step-walk[data-phase=play] .walk-progress i{animation-name:walkTail}
+.walk[data-phase=choice] .walk-progress,.walk[data-phase=selected] .walk-progress{visibility:hidden}
+.walk-choices{z-index:3}.walk-title{z-index:1}.walk-hand{z-index:2}
+@keyframes walkProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes walkTail{from{transform:scaleX(.75)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.walk .walk-progress i{animation:none!important}}
+.hero-walk{height:520px;min-height:0}
+.hero-walk .walk-phone{width:min(72%,calc((var(--demo-height,520px) - 112px)*.5));max-height:none}
+@media(max-width:900px){.hero-walk{height:440px}}
+</style>
 </head>
 <body>
+<div class="wrap">
+<header class="top">
+  <span class="small top-left">Short family films<br>Made by Jonathan</span>
+  <img class="logo" src="media/fotomigo-mark-1920.png" alt="Fotomigo" width="1920" height="181">
+  <div class="top-right">
+    <button class="theme" type="button" data-mode="system" aria-label="Colours: follow this device. Press for light.">
+      <svg class="i i-system" viewBox="0 0 26 26" width="26" height="26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="#FFF8E8" stroke="currentColor" stroke-width="2.5"/><path d="M13 2a11 11 0 0 1 0 22z" fill="#070707"/><circle cx="13" cy="13" r="11" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+      <svg class="i i-light" viewBox="0 0 26 26" width="26" height="26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="#FFF8E8" stroke="currentColor" stroke-width="2.5"/></svg>
+      <svg class="i i-dark" viewBox="0 0 26 26" width="26" height="26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="#070707" stroke="currentColor" stroke-width="2.5"/></svg>
+    </button>
+  </div>
+</header>
+
 <main>
-<div class="animation-stage"><img id="animated-logo" src="assets/logo-still.png" width="720" height="320" alt="Fotomigo colour tile logo"></div>
-<p class="eyebrow">Family documentaries</p>
-<h1>Your photos.<br>Your family’s story.</h1>
-<p class="intro">I turn your family’s photos and videos into a documentary you’ll watch together, again and again.</p>
+<!-- the ambition -->
+<section class="promo" aria-labelledby="promo-title">
+  <div class="promo-copy">
+    <span class="eyebrow">YouTube for you</span>
+    <h1 id="promo-title">Your family’s stories, made into films.</h1>
+    <p class="lead">Short films made from the photos and videos you care about most: the people, places, and things in your children’s lives. We help you find the moments that matter most to you, and make them into short films made for your children.</p>
+    <p>We help you choose the moments you love. You tell me who’s there, what was happening, and why it matters. I bring it all together into films for your children.</p>
+    <a class="button" href="#contact">Tell me about your family</a>
+  </div>
+  <figure class="channel" aria-label="Example family channel">
+    <div class="channel-head"><b>Our family channel</b><span id="channel-mode">Channel</span></div>
+    <div class="walk hero-walk" id="hero" data-phase="grid">
+      <div class="walk-grid"><ul class="vids">
+        <li><button class="thumb c-red" type="button" data-film="0" data-picture aria-label="Choose Year one, an example film"><span class="pbtn"><span class="play"></span></span><span class="len">3:10</span></button><h3>Year one</h3></li>
+        <li><button class="thumb c-blue" type="button" data-film="1" data-picture aria-label="Choose Grandma’s garden, an example film"><span class="pbtn"><span class="play"></span></span><span class="len">2:40</span></button><h3>Grandma’s garden</h3></li>
+        <li><button class="thumb c-green" type="button" data-film="2" data-picture aria-label="Choose Our street, an example film"><span class="pbtn"><span class="play"></span></span><span class="len">1:55</span></button><h3>Our street</h3></li>
+        <li><button class="thumb c-yellow" type="button" data-film="3" data-picture aria-label="Choose The strawberry farm, an example film"><span class="pbtn"><span class="play"></span></span><span class="len">2:20</span></button><h3>The strawberry farm</h3></li>
+      </ul></div>
+      <div class="walk-phone" hidden><span class="phone-speaker" aria-hidden="true"></span><span class="robot-grip" aria-hidden="true"><i></i><i></i><i></i><b></b></span><div class="walk-player"><div class="walk-art" aria-hidden="true"></div><b class="walk-title"></b><div class="walk-progress" aria-hidden="true"><i></i></div><div class="walk-choices" hidden><p>Choose a film</p><div class="walk-options"><button type="button" data-choice="0">A</button><button type="button" data-choice="1">B</button></div></div><span class="walk-hand" aria-hidden="true">↑</span></div></div>
+      <div class="walk-controls"><button type="button" class="walk-toggle">Pause demo</button></div>
+    </div>
+  </figure>
+  <div class="band boxed">
+    <p><b>Thinking about Christmas?</b> Tell me what you have in mind and we’ll discuss what’s possible.</p>
+  </div>
+</section>
+
+<!-- why: the best screen time -->
+<section class="block" aria-labelledby="why-title">
+  <div class="split">
+    <div>
+      <h2 id="why-title">When it’s time for a screen, what’s the best thing a child could be watching?</h2>
+    </div>
+    <div>
+      <p>Sometimes your child is going to watch a screen while you get something done, and not just once, but again and again.</p>
+      <p>I think it’s their own family. Their grandparents, the places they know, the things that matter to you. Films about their own life, with the stories and everyday messages you want to share.</p>
+      <a class="readmore" href="family-stories/index.html">Why family stories are worth keeping →</a>
+    </div>
+  </div>
+</section>
+
+<!-- curation and context: Jonathan, 23 October -->
+<section class="block section-divider" aria-labelledby="curation-title">
+  <div class="split">
+    <div><h2 id="curation-title">Choose the moments you love.</h2></div>
+    <div>
+      <p>If you have years of photos and videos, going through them can feel daunting. It’s a job that’s easy to put off.</p>
+      <p>We help you choose what you love. Tell me who’s there, what was happening, and why it matters. You don’t have to organise everything before we start.</p>
+      <p>Then bring the context. Your stories, text messages, recordings, and keepsakes help me understand your family and household. I bring them together into short films.</p>
+      <p>Revisit a family memory, share what’s happening today, or build excitement for an anniversary, a special birthday, or a family trip. Your past becomes part of what you’re doing now and looking forward to next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- benefits -->
+<section class="block" aria-labelledby="benefits">
+  <h2 id="benefits">Screen time, better spent.</h2>
+  <ul class="tiles">
+    <li class="boxed"><span class="label">About their life</span><h3>Their people, places, and things.</h3><p>Films about the people, places, and things in your child’s life, chosen with you.</p></li>
+    <li class="boxed"><span class="label">No endless scroll</span><h3>They choose what’s next.</h3><p>I’m building a family channel where children choose what to watch next. In the example below, nothing else plays until someone chooses.</p></li>
+    <li class="boxed"><span class="label">Past, present, and future</span><h3>Your family’s life, unfolding.</h3><p>Short films to revisit your past, share life today, and look forward to what’s next: anniversaries, special birthdays, and family trips.</p></li>
+    <li class="boxed"><span class="label">Files to keep</span><h3>Your own photos and videos.</h3><p>Made from your family’s photos, videos, and the stories you share. You receive copies of the finished films.</p></li>
+    <li class="boxed"><span class="label">Your languages</span><h3>Your language and culture.</h3><p>Tell me which languages matter to your family. We’ll discuss narration and check the wording and pronunciation with you.</p></li>
+    <li class="boxed"><span class="label">Channel or feed</span><h3>Watch it your way.</h3><p>I’m exploring a channel to browse, like YouTube, and short upright films, like TikTok, built around your family’s material.</p></li>
+    <li class="boxed"><span class="label">Everyday lessons</span><h3>The messages you want to share.</h3><p>Films can include the everyday messages you want to share: brushing teeth, washing hands, a coat when it’s cold, not wasting food, and telling someone straight away if you smell smoke.</p></li>
+    <li class="boxed"><span class="label">Private</span><h3>For your family, about your family.</h3><p>The aim is a private family channel, with you choosing who can watch. It’s still in development.</p></li>
+  </ul>
+</section>
+
+<!-- mailing list: moved up, memo 130729 -->
+<section class="block mailing-list" aria-labelledby="mail-title">
+  <div><h2 id="mail-title">Keep up to date.</h2><p>News from Fotomigo, as it takes shape.</p></div>
+  <form class="mail-preview" action="https://buttondown.com/api/emails/embed-subscribe/jaohar" method="post"><label for="updates-email">Your email</label><input id="updates-email" type="email" name="email" autocomplete="email" required placeholder="Your email address" aria-describedby="updates-note"><input type="hidden" name="embed" value="1"><button type="submit">Keep me updated</button><p id="updates-note">Buttondown will email you a link to confirm your subscription. Unsubscribe any time from any email.</p></form>
+</section>
+
+<!-- different from a photo app: memo 113301 -->
+<section class="block" aria-labelledby="apps-title">
+  <div class="split">
+    <div><h2 id="apps-title">Why not just use a photo app?</h2></div>
+    <div>
+      <p>These films start with your stories. I work with you to choose the material and shape it into a film.</p>
+      <p>We bring your photos and videos together with the stories your family shares: text messages, interviews, old letters, a child’s drawing, or a treasured object. Together, we choose which details belong in the film. It can follow a year in order, or be about one thing, one time, two people and what they share, or a place and its people.</p>
+      
+    </div>
+  </div>
+</section>
+
+<section class="block section-divider" aria-labelledby="demo-title">
+<h2 id="demo-title">See how it works.</h2>
+<ol class="process-stages">
+<li class="process-stage"><span class="stage-number" aria-hidden="true">1</span><div class="stage-copy"><h3>Choose the moments you love.</h3><p>You know which pictures matter to your family. We help you choose the photos and video moments you love.</p><p>Every photo and video moment in your films is one that meant something to someone in your family.</p></div><div class="stage-visual"><div class="stage-picture pick-picture" id="pick" role="group" aria-label="Try the curation tool: press the picture you love more"><p class="visual-note pick-q">Which one do you love more?</p><div class="pick-pair"><button class="pick" type="button" aria-label="Choose the left picture"><span class="sample-photo"><svg viewBox="0 0 100 80" aria-hidden="true"><rect width="100" height="80" fill="#56B8FF"/><circle cx="22" cy="20" r="10" fill="#FFD43B"/><path d="M0 60Q35 35 100 60V80H0Z" fill="#68D391"/><path d="M52 37L67 24L82 37V60H52Z" fill="#FF4B32"/></svg></span><span class="pick-heart" aria-hidden="true">♥</span></button><button class="pick" type="button" aria-label="Choose the right picture"><span class="sample-photo"><svg viewBox="0 0 100 80" aria-hidden="true"><rect width="100" height="80" fill="#56B8FF"/><circle cx="22" cy="20" r="10" fill="#FFD43B"/><path d="M0 60Q35 35 100 60V80H0Z" fill="#68D391"/><path d="M52 37L67 24L82 37V60H52Z" fill="#FF4B32"/></svg></span><span class="pick-heart" aria-hidden="true">♥</span></button></div><p class="visual-note pick-count" role="status"><b id="pick-n">12</b> favourites chosen</p></div></div></li>
+<li class="process-stage"><span class="stage-number" aria-hidden="true">2</span><div class="stage-copy"><h3>Add the context.</h3><p>Share stories, messages, recordings, and photographs of objects or keepsakes that help tell the story.</p></div><div class="stage-visual"><div class="stage-picture context-picture" role="img" aria-label="Illustration of a photograph beside a story, a message and a keepsake"><span class="sample-photo"><svg viewBox="0 0 100 80" aria-hidden="true"><rect width="100" height="80" fill="#56B8FF"/><circle cx="22" cy="20" r="10" fill="#FFD43B"/><path d="M0 60Q35 35 100 60V80H0Z" fill="#68D391"/><path d="M52 37L67 24L82 37V60H52Z" fill="#FF4B32"/></svg></span><div class="context-notes"><span>A story</span><span>A message</span><span>A keepsake</span></div></div></div></li>
+<li class="process-stage"><span class="stage-number" aria-hidden="true">3</span><div class="stage-copy"><h3>I make the films.</h3><p>We connect your family’s past with life today and occasions you’re looking forward to.</p><p>No invented faces or moments. The films draw on the photos, videos, and stories you share.</p></div><div class="stage-visual"><div class="reel" id="reel" role="img" aria-label="Example film: a wall of family photos, this year, three photos, then one picture up close"><div class="reel-mosaic" aria-hidden="true"></div><div class="reel-big" aria-hidden="true"><span class="reel-pic"></span><b class="reel-year" id="reel-year">2026</b></div><div class="reel-three" aria-hidden="true"><span class="reel-pic"></span><span class="reel-pic"></span><span class="reel-pic"></span></div><div class="reel-kb" aria-hidden="true"></div><div class="reel-swipe" aria-hidden="true"></div></div></div></li>
+<li class="process-stage"><span class="stage-number" aria-hidden="true">4</span><div class="stage-copy"><h3>Your child chooses what’s next.</h3><p>I’m building a family channel where children choose what to watch next. Try the example: when no one chooses, nothing else plays.</p></div><div class="stage-visual"><div class="walk step-walk" id="choice-demo" data-phase="play"><div class="walk-player"><div class="walk-art" aria-hidden="true"></div><b class="walk-title"></b><div class="walk-progress" aria-hidden="true"><i></i></div><div class="walk-choices" hidden><p>Choose a film</p><div class="walk-options"><button type="button" data-choice="0">A</button><button type="button" data-choice="1">B</button></div></div><span class="walk-hand" aria-hidden="true">↑</span></div><div class="walk-controls"><button type="button" class="walk-toggle">Pause demo</button></div></div></div></li>
+</ol>
+
+</section>
+
+<!-- about me -->
+<section class="block section-divider" aria-labelledby="about">
+  <h2 id="about">About me.</h2>
+  <div class="about">
+    <figure class="portrait"><img src="media/jonathan-ohara.jpg" alt="Jonathan, who makes the films" width="900" height="1200"></figure>
+    <div>
+      <p class="about-intro">I’m Jonathan. I made an award-winning short film, and I make the first films myself, start to finish, so you talk to the person making them.</p>
+      <div class="credits boxed">
+        <div class="credit-tags"><span class="eyebrow">Video</span><span class="eyebrow">Award</span></div>
+        <p>I’ve made films of my own family for years, from photos and videos like yours.</p>
+        <p>I made <i>The Boxer</i>, which won the People’s Choice Award at Lido Cinemas’ Short Stack #4 in October 2022.</p>
+      </div>
+    </div>
+  </div>
+  <ul class="boxes">
+    <li class="boxed"><h3>Music and dance</h3><p>I was a dancer for nine years, in salsa and Brazilian zouk: performing, dancing socially, and competing. I’ve DJ’d at events, cut music, and tried my hand at choreography.</p><p>I’m not the best dancer, but I learned the value of musicality.</p><p>During the first COVID lockdown, I taught myself enough songwriting and production to make my first song and its music video.</p></li>
+    <li class="boxed"><h3>Research</h3><p>PhD in psychology (2015), with an Australian Postgraduate Award. First Class Honours in psychology before that.</p><p>I’ve researched health literacy and health equity at Deakin University, youth loneliness at VicHealth, and program evaluation at the NDIA.</p></li>
+    <li class="boxed"><h3>Data</h3><p>More than ten years of surveys across academic, government, and commercial work. I know how to collect information and make it a good experience.</p><p>Co-founder and director of a company that built research and market-intelligence tools, to make insight easier to use for people at every level.</p></li>
+  </ul>
+</section>
+
+<!-- five families and contact -->
+<section class="block" id="contact" aria-labelledby="contact-title">
+  <div class="split">
+    <div>
+      <div class="families boxed">
+        <h2 id="contact-title">I’m looking for five families to start.</h2>
+        <p>I’ve been making films for my own family, and I’d love to make a time to show you some.</p>
+        <p>Send me a message below if you’re interested, and we’ll arrange a time for a private showing.</p>
+      </div>
+      <p>Tell me who the films are for and what you’d love to see in them. There’s no need to organise or send your photos to ask.</p>
+    </div>
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="a0813652-5149-4db6-b5df-fa3e94114b42">
+      <input type="hidden" name="subject" value="Fotomigo enquiry: five families">
+      <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div><label for="name">Your name</label><input id="name" type="text" name="name" autocomplete="name" required></div>
+      <div><label for="email">Your email</label><input id="email" type="email" name="email" autocomplete="email" required></div>
+      <div><label for="message">About your family</label><textarea id="message" name="message" rows="6" required placeholder="Who are the films for? How old are your children?"></textarea></div>
+      <p class="form-privacy">Your message is processed by Web3Forms so I can reply. Do not include confidential or sensitive information.</p>
+      <button type="submit">Send message</button>
+      <p class="form-status" role="status" aria-live="polite" hidden></p>
+    </form>
+  </div>
+</section>
 </main>
-<footer><p>Our full website is on its way.</p><img class="wordmark" src="assets/logo.png" width="1920" height="181" alt="Fotomigo"></footer>
-</body></html>
+
+<footer class="small">
+<div class="footer-mark" role="img" aria-label="Fotomigo"><img class="logo-still" src="media/fotomigo-2x4-animated-last-frame.png" alt="" width="720" height="320"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(12.500000% 72.222222% 50.000000% 5.555556%);transform-origin:16.666667% 31.250000%;animation-delay:0.00s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(12.500000% 50.000000% 50.000000% 27.777778%);transform-origin:38.888889% 31.250000%;animation-delay:0.12s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(12.500000% 27.777778% 50.000000% 50.000000%);transform-origin:61.111111% 31.250000%;animation-delay:0.24s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(12.500000% 5.555556% 50.000000% 72.222222%);transform-origin:83.333333% 31.250000%;animation-delay:0.36s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(50.000000% 72.222222% 12.500000% 5.555556%);transform-origin:16.666667% 68.750000%;animation-delay:0.48s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(50.000000% 50.000000% 12.500000% 27.777778%);transform-origin:38.888889% 68.750000%;animation-delay:0.60s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(50.000000% 27.777778% 12.500000% 50.000000%);transform-origin:61.111111% 68.750000%;animation-delay:0.72s"><img class="logo-tile" src="media/fotomigo-2x4-animated-last-frame.png" alt="" aria-hidden="true" width="720" height="320" style="clip-path:inset(50.000000% 5.555556% 12.500000% 72.222222%);transform-origin:83.333333% 68.750000%;animation-delay:0.84s"></div>
+  <p><b>Fotomigo</b> · Short family films for your children, made by Jonathan.</p>
+</footer>
+</div>
+
+<script>
+// Lead line: option a is on the page; ?lead=b or ?lead=c shows the others in place (memo 092014: "what is the one sentence").
+(function(){
+  var m = /[?&]lead=([abc])/.exec(location.search); if (!m) return;
+  var L = { a: 'Your family’s stories, made into films.', b: 'Films about your family. Made for your children.', c: 'Your photos have stories to tell.' };
+  document.getElementById('promo-title').textContent = L[m[1]];
+})();
+
+// Theme toggle: system → light → dark → system. The choice is kept in this browser only.
+(function(){
+  var b = document.querySelector('.theme'), root = document.documentElement;
+  var next = { system: 'light', light: 'dark', dark: 'system' };
+  var said = { system: 'Colours: follow this device. Press for light.', light: 'Colours: light. Press for dark.', dark: 'Colours: dark. Press to follow this device.' };
+  function show(m){ b.setAttribute('data-mode', m); b.setAttribute('aria-label', said[m]); if (m === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', m); }
+  show(root.getAttribute('data-theme') || 'system');
+  b.addEventListener('click', function(){ var m = next[b.getAttribute('data-mode')]; show(m); try { if (m === 'system') localStorage.removeItem('fotomigo-theme'); else localStorage.setItem('fotomigo-theme', m); } catch (e) {} });
+})();
+
+// Polaroid films. Each film has its own treatment: a slow push across one picture (Ken Burns), a stack dropped one
+// by one, pictures thrown onto a table, and a strip sliding past. The pictures are drawn scenes, never family photos.
+var FM = (function(){
+  var SCENES = [
+    '<rect width="100" height="80" fill="#070707"/><circle cx="70" cy="24" r="11" fill="#FFD43B"/><path d="M0 58Q30 38 55 52T100 46V80H0Z" fill="#68D391"/>',
+    '<rect width="100" height="80" fill="#56B8FF"/><circle cx="22" cy="20" r="9" fill="#FFD43B"/><path d="M0 62Q50 44 100 60V80H0Z" fill="#68D391"/><path d="M52 36L66 25L80 36V56H52Z" fill="#FF4B32"/><rect x="62" y="44" width="8" height="12" fill="#070707"/>',
+    '<rect width="100" height="80" fill="#FFD43B"/><circle cx="50" cy="28" r="12" fill="#FF4B32"/><path d="M0 52Q12 46 25 52T50 52T75 52T100 52V80H0Z" fill="#56B8FF"/><path d="M0 66Q12 60 25 66T50 66T75 66T100 66V80H0Z" fill="#070707"/>',
+    '<rect width="100" height="80" fill="#68D391"/><rect x="45" y="40" width="8" height="28" fill="#070707"/><circle cx="49" cy="32" r="17" fill="#FF4B32"/><path d="M0 66H100V80H0Z" fill="#070707"/>'
+  ];
+  SCENES.push(
+    '<rect width="100" height="80" fill="#56B8FF"/><path d="M0 70L30 20L57 60L76 27L100 70" fill="#FFF8E8" stroke="#070707" stroke-width="3"/><path d="M48 17L52 7L56 17L67 14L62 26L68 32L55 35L55 44H51V35L38 32L44 26L39 14Z" fill="#FF4B32"/>',
+    '<rect width="100" height="80" fill="#FFF8E8"/><circle cx="38" cy="45" r="20" fill="none" stroke="#070707" stroke-width="9"/><circle cx="38" cy="45" r="20" fill="none" stroke="#FFD43B" stroke-width="5"/><circle cx="64" cy="45" r="20" fill="none" stroke="#070707" stroke-width="9"/><circle cx="64" cy="45" r="20" fill="none" stroke="#FFD43B" stroke-width="5"/><path d="M50 21C26 8 44 0 50 10C56 0 74 8 50 21" fill="#FF4B32"/>',
+    '<rect width="100" height="80" fill="#68D391"/><path d="M20 42H80V70H20Z" fill="#FF4B32" stroke="#070707" stroke-width="3"/><path d="M20 42Q30 57 40 42Q50 57 60 42Q70 57 80 42" fill="#FFF8E8"/><path d="M35 41V26M50 41V26M65 41V26" stroke="#070707" stroke-width="4"/><path d="M32 23L35 13L38 23M47 23L50 13L53 23M62 23L65 13L68 23" fill="#FFD43B"/>',
+    '<rect width="100" height="80" fill="#FFD43B"/><circle cx="50" cy="41" r="29" fill="#FFF8E8" stroke="#070707" stroke-width="3"/><path d="M33 36Q38 29 43 36M57 36Q62 29 67 36" fill="none" stroke="#070707" stroke-width="3"/><path d="M37 48Q50 70 63 48Z" fill="#FF4B32" stroke="#070707" stroke-width="3"/><path d="M46 13Q39 2 52 8" fill="none" stroke="#070707" stroke-width="3"/>'
+  );
+  function pol(s, x, y, w, r){
+    return '<div class="pol" style="--x:' + x + '%;--y:' + y + '%;--w:' + w + ';--r:' + r + 'deg"><svg viewBox="0 0 100 80" width="100" height="80" aria-hidden="true">' + SCENES[s % SCENES.length] + '</svg></div>';
+  }
+  // posters: the still picture on each channel thumbnail (x, y = centre in %, w = width, r = turn)
+  var POSTERS = {
+    kb:      [[0, 50, 50, '48%', -4]],
+    stack:   [[1, 48, 52, '40%', -10], [2, 52, 50, '40%', 7], [0, 50, 48, '40%', -2]],
+    scatter: [[2, 22, 30, '30%', -12], [3, 76, 28, '30%', 10], [1, 24, 72, '28%', 8], [0, 74, 70, '28%', -8]],
+    slide:   [[3, 18, 52, '30%', -5], [0, 50, 48, '32%', 3], [1, 82, 52, '30%', -4]]
+  };
+  function poster(t, scene){ return POSTERS[t].map(function(p){ return pol(scene === undefined ? p[0] : scene, p[1], p[2], p[3], p[4]); }).join(''); }
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function T(r, s){ return 'translate(-50%,-50%) rotate(' + r + 'deg) scale(' + s + ')'; }
+  // film: fill the stage and animate it for `ms`; widths are a share of the stage's height so the pictures fit any shape
+  function film(stage, t, ms){
+    var h = stage.clientHeight, w = function(k){ return Math.round(h * k) + 'px'; }, spec = [], anims = [];
+    if (t === 'kb') spec = [[0, 50, 52, w(.78), -3], [1, 50, 52, w(.78), 2]];
+    if (t === 'stack') spec = [[1, 50, 52, w(.62), -9], [2, 50, 52, w(.62), 6], [3, 50, 52, w(.62), -3], [0, 50, 52, w(.62), 8], [1, 50, 52, w(.62), -1]];
+    if (t === 'scatter') spec = [[2, 20, 30, w(.42), -12], [3, 50, 28, w(.42), 8], [1, 80, 32, w(.42), -6], [0, 28, 70, w(.42), 7], [2, 55, 72, w(.42), -9], [3, 82, 68, w(.42), 10]];
+    if (t === 'slide') spec = [0, 1, 2, 3, 0, 1].map(function(s, i){ return [s, 50 + i * 45, 50, w(.6), i % 2 ? 3 : -3]; });
+    stage.innerHTML = spec.map(function(p){ return pol(p[0], p[1], p[2], p[3], p[4]); }).join('');
+    var P = stage.querySelectorAll('.pol');
+    function go(el, k, o){ if (!still) anims.push(el.animate(k, o)); }
+    if (t === 'kb') {
+      go(P[0], [{ transform: T(-3, 1), left: '52%', opacity: 1 }, { transform: T(-3, 1.25), left: '45%', opacity: 1, offset: .55 }, { transform: T(-3, 1.3), left: '44%', opacity: 0, offset: .66 }, { transform: T(-3, 1.3), left: '44%', opacity: 0 }], { duration: ms, fill: 'both' });
+      go(P[1], [{ transform: T(2, 1.22), left: '56%', opacity: 0 }, { transform: T(2, 1.2), left: '55%', opacity: 0, offset: .55 }, { transform: T(2, 1.15), left: '54%', opacity: 1, offset: .66 }, { transform: T(2, 1), left: '49%', opacity: 1 }], { duration: ms, fill: 'both' });
+      if (still) P[1].style.opacity = 0;
+    }
+    if (t === 'stack') Array.prototype.forEach.call(P, function(el, i){
+      var r = +el.style.getPropertyValue('--r').replace('deg', '');
+      go(el, [{ top: '-70%', transform: T(r + 25, 1.1) }, { top: '52%', transform: T(r, 1) }], { duration: 650, delay: 150 + i * 1050, fill: 'both', easing: 'cubic-bezier(.2,.9,.3,1.15)' });
+    });
+    if (t === 'scatter') Array.prototype.forEach.call(P, function(el, i){
+      var r = +el.style.getPropertyValue('--r').replace('deg', ''), x = parseFloat(el.style.getPropertyValue('--x'));
+      go(el, [{ left: x < 50 ? '-40%' : '140%', top: '110%', transform: T(r + (x < 50 ? -160 : 160), .9) }, { left: x + '%', top: el.style.getPropertyValue('--y'), transform: T(r, 1) }], { duration: 600, delay: 150 + i * 820, fill: 'both', easing: 'cubic-bezier(.2,.8,.3,1)' });
+    });
+    if (t === 'slide') Array.prototype.forEach.call(P, function(el, i){
+      go(el, [{ left: (50 + i * 45) + '%' }, { left: (50 + i * 45 - 225) + '%' }], { duration: ms, fill: 'both', easing: 'linear' });
+    });
+    return anims;
+  }
+  return { poster: poster, film: film, scenes: SCENES };
+})();
+
+// Contact form: copied from jaohar.com.au script.js lines 99-130 (commit 5115e98), as in revision 4. Changes: the failure
+// message no longer gives an email address (memo 071433: "let's remove my email").
+(function(){
+  var contactForm = document.querySelector(".contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      var button = contactForm.querySelector('button[type="submit"]');
+      var status = contactForm.querySelector(".form-status");
+      var originalLabel = button.textContent;
+
+      button.disabled = true;
+      button.textContent = "Sending…";
+      status.hidden = false;
+      status.textContent = "Sending your message.";
+
+      try {
+        var response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: { Accept: "application/json" }
+        });
+        var result = await response.json().catch(function () { return {}; });
+        if (!response.ok || result.success === false) throw new Error("Submission failed");
+        contactForm.reset();
+        status.textContent = "Thanks. Your message has been sent.";
+      } catch (error) {
+        status.textContent = "Your message could not be sent. Please try again in a minute.";
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    });
+  }
+})();
+// The looping film (memo 130729): the year comes from the clock, so it is always the current year.
+(function(){
+  var S = FM.scenes, svg = function(k, fit){ return '<svg viewBox="0 0 100 80" aria-hidden="true"' + (fit ? ' preserveAspectRatio="xMidYMid slice"' : '') + '>' + S[k % 4] + '</svg>'; };
+  var reel = document.getElementById('reel'), wall = '';
+  for (var k = 0; k < 32; k++) wall += '<svg x="' + (6 + (k % 8) * 106) + '" y="' + (6 + (k >> 3) * 86) + '" width="100" height="80" viewBox="0 0 100 80">' + S[(k * 3 + (k >> 3)) % 4] + '<rect width="100" height="80" fill="none" stroke="#070707" stroke-width="3"/></svg>';
+  reel.querySelector('.reel-mosaic').style.backgroundImage = 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 854 350"><rect width="854" height="350" fill="#070707"/>' + wall + '</svg>') + '")';
+  Array.prototype.forEach.call(reel.querySelectorAll('.reel-pic'), function(p, k){ p.innerHTML = svg(k + 1); });
+  reel.querySelector('.reel-kb').innerHTML = svg(1, true);
+  document.getElementById('reel-year').textContent = new Date().getFullYear();
+})();
+
+// The curation tool (stage 1): press the picture you love more; the pair changes and the count goes up.
+(function(){
+  var box = document.getElementById('pick'), b = box.querySelectorAll('.pick'), n = document.getElementById('pick-n'), turn = 0;
+  function draw(){ Array.prototype.forEach.call(b, function(x, k){ x.querySelector('.sample-photo').innerHTML = '<svg viewBox="0 0 100 80" aria-hidden="true">' + FM.scenes[(turn * 2 + k) % 4] + '</svg>'; }); }
+  draw();
+  Array.prototype.forEach.call(b, function(x){ x.addEventListener('click', function(){
+    x.classList.add('chosen'); n.textContent = +n.textContent + 1;
+    setTimeout(function(){ x.classList.remove('chosen'); turn++; draw(); }, 450);
+  }); });
+})();
+</script>
+<script src="channel-demo.js"></script>
+</body>
+</html>
